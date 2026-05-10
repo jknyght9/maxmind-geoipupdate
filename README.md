@@ -1,22 +1,43 @@
-# Maxmind GeoIp Update
+# Maxmind GeoIP Update
 
 This project contains a docker container template that pulls and updates geoip location information from Maxmind.
 
-## Requrements
+## Requirements
 
 This does require an account and license key. Create a free account by visiting [https://www.maxmind.com/en/account/login](https://www.maxmind.com/en/account/login).
 
 ## Quick Start
 
-Update the `config.env` file with your account_id and license_key. Then navigate to the folder containing the docker-compose.yml file and run the command:
+1. Copy the example environment file and update it with your account ID and license key:
 
 ```shell
-docker-compose up -d 
+cp .env.example .env
+```
+
+2. Start the container:
+
+```shell
+docker compose up -d
+```
+
+3. Check the health status:
+
+```shell
+docker compose ps
 ```
 
 ### GeoIP Database
 
-All three databases (ASN, Country, City) will be stored in the `geoip_data` folder. This will be updated periodically as long as the container is running.
+All three databases (ASN, Country, City) will be stored in the `geoip_data` folder. This will be updated every 72 hours as long as the container is running.
+
+### GreymHatter Integration
+
+To attach to the shared `greymhatter` Docker network, copy the override file:
+
+```shell
+cp compose.override.yml.example compose.override.yml
+docker compose up -d
+```
 
 ## References
 

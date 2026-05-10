@@ -1,0 +1,15 @@
+# Example override for GreymHatter integration.
+# Copy to compose.override.yml to attach to the shared greymhatter network.
+#
+#   cp compose.override.yml.example compose.override.yml
+#   docker compose up -d
+
+services:
+  geoipupdate:
+    networks:
+      - geoipupdate
+      - greymhatter
+
+networks:
+  greymhatter:
+    external: true
